@@ -170,7 +170,6 @@ const Register = () => {
                   onChange={handleImageChange}
                 />
 
-                {/* Clear Button (যদি ইমেজ সিলেক্ট করা থাকে) */}
                 {previewUrl && (
                   <button
                     type="button"

@@ -80,7 +80,6 @@ const Profile = () => {
   ];
   const mediaPosts = userPosts.filter((post) => post.image);
   useEffect(() => {
-    // ১. প্রথমেই আইডিটি বের করে নাও (id বা _id যেটা থাকে)
     const userId = user?._id || user?.id;
 
     // ২. ডিব্যাগ করার জন্য কন্ডিশনের বাইরে লগ দাও
@@ -289,7 +288,6 @@ const Profile = () => {
                   )}
                 </div>
               ) : (
-                // অন্যান্য ট্যাবের জন্য (Media/Likes)
                 <div className="text-center py-40 opacity-20 font-black uppercase tracking-[0.5em]">
                   Coming Soon
                 </div>
@@ -299,7 +297,6 @@ const Profile = () => {
         </div>
       </motion.div>
       <div className="...">
-        {/* আপনার আগের প্রোফাইল কোড */}
 
         <EditProfileModal
           isOpen={isEditModalOpen}

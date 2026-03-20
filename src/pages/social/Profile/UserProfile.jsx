@@ -55,7 +55,6 @@ const UserProfile = () => {
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
-    // যদি ইউজার নিজের আইডিতে চলে আসে, তবে /profile এ পাঠিয়ে দাও
     if (userId === (currentUser?.id || currentUser?._id)) {
       navigate("/social/profile");
       return;
