@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* -----------------------------------------------------------
+   1. GLOBAL UTILITIES (Modular & Theme-Aware)
+   ----------------------------------------------------------- */
+@layer components {
+  /* High-vibrancy Green Gradient Primary Button */
+  .btn-primary {
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary)) !important;
+    background-color: transparent !important;
+    color: var(--color-primary-content) !important;
+    border: none !important;
+    box-shadow: 0 10px 15px -3px rgb(16 185 129 / 0.2), 0 4px 6px -4px rgb(16 185 129 / 0.1) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: var(--radius-box) !important;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9 !important;
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  /* Modular Outline Button - Green Variant */
+  .btn-outline {
+    border: 2px solid var(--color-primary) !important;
+    background: transparent !important;
+    color: var(--color-primary) !important;
+    border-radius: var(--radius-box) !important;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-primary) !important;
+    color: var(--color-primary-content) !important;
+  }
+}
+
+/* -----------------------------------------------------------
+   2. THEME DEFINITIONS (Emerald & Forest Logic)
+   ----------------------------------------------------------- */
+@plugin "daisyui/theme" {
+  name: "evergreen-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  /* Surfaces & Text - Clean White with hint of Mint */
+  --color-base-100: #ffffff;    
+  --color-base-200: #f0fdf4;    /* Very light mint (Green-50) */
+  --color-base-300: #dcfce7;    /* Green-100 */
+  --color-base-content: #064e3b; /* Deep Emerald Text (Green-900) */
+
+  /* Branding: Emerald-600 to Teal-600 */
+  --color-primary: #059669;      
+  --color-secondary: #0d9488;    
+  --color-primary-content: #ffffff; 
+  
+  --color-accent: #f59e0b;       /* Amber for a nice organic contrast */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+
+  /* Global Radius (rounded-xl match) */
+  --radius-selector: 0.75rem;
+  --radius-field: 0.75rem;
+  --radius-box: 0.75rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "evergreen-dark";
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* 1. Surfaces: Deep Forest Black */
+  --color-base-100: #020617;    /* Slate-950 for deep premium feel */
+  --color-base-200: #064e3b;    /* Deep Emerald tint for cards */
+  --color-base-300: #065f46;    /* Slightly lighter for hover/borders */
+  
+  /* 2. Readability: Soft Mint-White text */
+  --color-base-content: #ecfdf5; /* Emerald-50 */
+
+  /* 3. Branding: Vibrant Mint to Teal */
+  --color-primary: #10b981;      /* Emerald-500 */
+  --color-secondary: #14b8a6;    /* Teal-500 */
+  --color-primary-content: #ffffff; 
+
+  /* 4. Functional & Utility */
+  --color-neutral: #1e293b;      
+  --color-accent: #fbbf24;       /* Amber-400 for dark mode pop */
+  
+  --radius-box: 0.75rem;
+}
+
+/* -----------------------------------------------------------
+   3. BASE TYPOGRAPHY & LAYOUT
+   ----------------------------------------------------------- */
+@layer base {
+  body {
+    @apply bg-base-100 text-base-content antialiased;
+  }
+}
