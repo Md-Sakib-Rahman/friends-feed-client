@@ -196,7 +196,7 @@ const Register = () => {
                 />
                 <input
                   type="text"
-                  placeholder="sakib99"
+                  placeholder="ex. JohnDoe123"
                   className={`input input-bordered w-full pl-12 rounded-2xl bg-base-100/50 focus:border-primary transition-all ${errors.username ? "border-error" : "border-base-300"}`}
                   {...register("username", {
                     required: "Username is required",
@@ -221,7 +221,7 @@ const Register = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Sakib Rahman"
+                  placeholder="ex. John Doe"
                   className={`input input-bordered w-full pl-12 rounded-2xl bg-base-100/50 focus:border-primary transition-all ${errors.name ? "border-error" : "border-base-300"}`}
                   {...register("name", { required: "Full name is required" })}
                 />

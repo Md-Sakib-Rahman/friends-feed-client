@@ -99,20 +99,26 @@ const SocialLayout = () => {
           {/* 2. MIDDLE FEED AREA */}
           <main className="flex-1 max-w-2xl mx-auto w-full pb-32 lg:pb-0">
             {/* Mobile Header with Theme Switcher */}
-            <div className="lg:hidden flex items-center justify-between mb-6 bg-base-100/40 backdrop-blur-2xl p-4 rounded-3xl border border-white/5 shadow-xl">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-content font-black">F</div>
+            <div className="lg:hidden flex items-center justify-between mb-6 bg-base-100/40 backdrop-blur-2xl p-4 rounded-3xl border border-white/5 shadow-xl fixed top-4 left-1/2 -translate-x-1/2 w-full max-w-sm z-50 ">
+              <Link to="/social" className="flex items-center gap-2">
+                <div className="w-8 h-8 border-primary rounded-lg flex items-center justify-center text-primary-content font-black"><img src={Logo} alt="" /></div>
                 <span className="text-lg font-black tracking-tighter">FriendsFeed</span>
-              </div>
+              </Link>
               <div className="flex items-center gap-3">
                 <ThemeController />  
-                <div className="w-9 h-9 rounded-full ring-2 ring-primary/20 bg-base-300">
-                   <img src={user?.profilePicture || null} alt={user?.name} className="w-full h-full rounded-full object-cover" />
-                </div>
+                <Link to="/social/profile" className="w-9 h-9 rounded-full ring-2 ring-primary/20 bg-base-300">
+                <img src={user?.profilePicture || null} alt={user?.name} className="w-full h-full rounded-full object-cover" />
+                </Link>
+                <button onClick={() => dispatch(logout())} className="btn-error btn btn-ghost btn-sm rounded-full p-2">
+                    <LogOut size={18} /> 
+                </button> 
               </div>
+              
             </div>
             
-            <Outlet />
+            <div className="max-lg:pt-20">
+                  <Outlet/>
+            </div>
           </main>
 
           {/* 3. RIGHT SIDEBAR (Desktop Contacts) */}
