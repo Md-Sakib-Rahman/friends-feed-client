@@ -12,11 +12,9 @@ import Profile from "../pages/social/Profile/Profile";
 import UserProfile from "../pages/social/Profile/UserProfile";
 import SearchModal from "../pages/social/Search/SearchModal";
 import FriendsPage from "../pages/social/Friends/FriendsPage";
+import NotificationPage from "../pages/social/NotificationPage/NotificationPage";
 
- 
- 
-
-const isAuthenticated = true; 
+const isAuthenticated = true;
 
 const router = createBrowserRouter([
   {
@@ -25,15 +23,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: "about",
-        element: <About/>,
+        element: <About />,
       },
       {
         path: "/features",
-        element: <Features/>,
+        element: <Features />,
       },
       {
         path: "login",
@@ -41,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <Register/>,
+        element: <Register />,
       },
     ],
   },
@@ -50,11 +48,11 @@ const router = createBrowserRouter([
     element: <SocialLayout isAuthenticated={isAuthenticated} />,
     children: [
       {
-        index: true,  
+        index: true,
         element: <Feed />,
       },
       {
-        path: "profile",  
+        path: "profile",
         element: <Profile />,
       },
       {
@@ -63,17 +61,20 @@ const router = createBrowserRouter([
       },
       {
         path: "user/:userId",
-        element: <UserProfile/>,
+        element: <UserProfile />,
       },
       {
         path: "search",
-        element: <SearchModal/>,
+        element: <SearchModal />,
       },
       {
         path: "friends",
-        element: <FriendsPage/>,
+        element: <FriendsPage />,
       },
-       
+      {
+        path: "notifications",
+        element: <NotificationPage />,
+      },
     ],
   },
   {
