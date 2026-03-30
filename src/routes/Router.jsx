@@ -10,6 +10,8 @@ import Feed from "../features/posts/Feed";
 import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/social/Profile/Profile";
 import UserProfile from "../pages/social/Profile/UserProfile";
+import SearchModal from "../pages/social/Search/SearchModal";
+import FriendsPage from "../pages/social/Friends/FriendsPage";
 
  
  
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "user/:userId",
         element: <UserProfile/>,
+      },
+      {
+        path: "search",
+        element: <SearchModal/>,
+      },
+      {
+        path: "friends",
+        element: <FriendsPage/>,
       },
        
     ],
