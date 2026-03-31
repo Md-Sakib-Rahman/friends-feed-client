@@ -12,14 +12,17 @@ const CreatePost = ({ onPostCreated }) => {
   const [uploading, setUploading] = useState(false);
 
   const handlePost = async () => {
-    if (!content.trim() && !image) return;
+    if (!content.trim() && !image) {
+    toast.error("Please add some text or an image");
+    return;
+  };
     setUploading(true);
     try {
       let imageUrl = "";
       if (image) {
         imageUrl = await uploadImageToImgBB(image);
       }
-      const newPost = await createNewPost({ content, image: imageUrl });
+      const newPost = await createNewPost({ content: content.trim(), image: imageUrl });
       onPostCreated(newPost);
       setContent("");
       setImage(null);
