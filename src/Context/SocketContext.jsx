@@ -41,7 +41,7 @@ export const SocketProvider = ({ children }) => {
     if (user) {
       const userId = user.id || user._id;
 
-      newSocket = io("http://localhost:6060", {
+      newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         query: { userId },
         transports: ["websocket"],
       });
