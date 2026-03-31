@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import CommentSection from "../../components/social/comments/CommentSection";
 import { useNavigate } from "react-router";
-const PostCard = ({ post, onDelete }) => {
+const PostCard = ({ post, onDelete, onImageClick }) => {
   const { user } = useSelector((state) => state.auth);
   const currentUserId = user?.id || user?._id;
   const navigate = useNavigate();
@@ -139,7 +139,8 @@ const PostCard = ({ post, onDelete }) => {
       <p className="text-sm leading-relaxed mb-4 whitespace-pre-wrap px-1">{post.content}</p>
       {post.image && (
         <div className="rounded-[2rem] overflow-hidden mb-4 border border-white/5 shadow-inner">
-          <img src={post.image} alt="" className="w-full h-auto max-h-[500px] object-cover" loading="lazy" />
+              
+          <img  onClick={onImageClick} src={post.image} alt="" className="w-full h-auto max-h-[500px] object-cover" loading="lazy" />
         </div>
       )}
 

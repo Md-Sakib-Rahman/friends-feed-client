@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Bell, 
-  X, 
-  Zap, 
-  Heart, 
-  MessageSquare, 
-  UserPlus, 
-  Clock, 
-  Eye 
+import {
+  Bell,
+  X,
+  Zap,
+  Heart,
+  MessageSquare,
+  UserPlus,
+  Clock,
+  Eye,
 } from "lucide-react";
 import axiosInstance from "../../../services/axiosInstance";
 import { useSocket } from "../../../Context/SocketContext";
@@ -52,8 +52,11 @@ const NotificationPage = () => {
 
   const handleRequestAction = async (requestId, status) => {
     try {
-      await axiosInstance.put(`/users/request/respond/${requestId}`, { status });
-      const successMessage = status === "accepted" ? "Connection established" : "Request declined";
+      await axiosInstance.put(`/users/request/respond/${requestId}`, {
+        status,
+      });
+      const successMessage =
+        status === "accepted" ? "Connection established" : "Request declined";
       toast.success(successMessage);
 
       setNotifications((prev) => prev.filter((n) => n._id !== requestId));
@@ -105,7 +108,13 @@ const NotificationPage = () => {
             {allNotifications.map((notif) => {
               const latestSender = notif.senders?.[0] || notif.sender;
               const notificationTime = notif.updatedAt || notif.createdAt;
-
+              const getSafePostId = () => {
+                if (!notif.post) return null;
+                return typeof notif.post === "object"
+                  ? notif.post._id
+                  : notif.post;
+              };
+              const postId = getSafePostId();
               return (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -113,13 +122,18 @@ const NotificationPage = () => {
                   exit={{ opacity: 0, scale: 0.95 }}
                   key={notif._id || notif.createdAt}
                   className={`group relative bg-base-200/40 backdrop-blur-xl border ${
-                    notif.isRead ? "border-white/5" : "border-primary/20 bg-primary/5"
+                    notif.isRead
+                      ? "border-white/5"
+                      : "border-primary/20 bg-primary/5"
                   } p-5 rounded-[2.2rem] flex items-center justify-between hover:bg-base-200 transition-all duration-300`}
                 >
                   <div className="flex items-center gap-5 flex-1 min-w-0">
                     <div className="relative flex-shrink-0">
                       <img
-                        src={latestSender?.profilePicture || "https://api.dicebear.com/7.x/avataaars/svg?seed=fallback"}
+                        src={
+                          latestSender?.profilePicture ||
+                          "https://api.dicebear.com/7.x/avataaars/svg?seed=fallback"
+                        }
                         className="w-14 h-14 rounded-2xl object-cover shadow-lg bg-base-300"
                         alt=""
                       />
@@ -130,13 +144,15 @@ const NotificationPage = () => {
 
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium leading-snug">
-                        <span 
+                        <span
                           className="font-black text-base-content hover:text-primary cursor-pointer transition-colors"
-                          onClick={() => navigate(`/social/user/${latestSender?._id}`)}
+                          onClick={() =>
+                            navigate(`/social/user/${latestSender?._id}`)
+                          }
                         >
                           {latestSender?.name || "Someone"}
                         </span>
-                        
+
                         <span className="opacity-70 ml-1">
                           {notif.type === "post_like" &&
                             (notif.count > 1
@@ -145,12 +161,12 @@ const NotificationPage = () => {
                           {notif.type === "post_comment" &&
                             (notif.count > 1
                               ? `and ${notif.count - 1} others commented on your post`
-                              : `commented: ${notif.content || ''}`)}
+                              : `commented: ${notif.content || ""}`)}
                           {notif.type === "friend_request" &&
                             "sent you a friend request"}
                         </span>
                       </p>
-                      
+
                       <div className="flex items-center gap-2 mt-1 opacity-30">
                         <Clock size={10} />
                         <span className="text-[10px] font-bold uppercase tracking-tighter">
@@ -168,14 +184,16 @@ const NotificationPage = () => {
                     {notif.type === "friend_request" ? (
                       <div className="flex gap-2">
                         <Link
-                        to={"/social/friends"}
-                        //   onClick={() => handleRequestAction(notif._id, "accepted")}
+                          to={"/social/friends"}
+                          //   onClick={() => handleRequestAction(notif._id, "accepted")}
                           className="btn btn-primary btn-sm rounded-xl font-black px-4 shadow-lg shadow-primary/20"
                         >
                           view
                         </Link>
                         <button
-                          onClick={() => handleRequestAction(notif._id, "rejected")}
+                          onClick={() =>
+                            handleRequestAction(notif._id, "rejected")
+                          }
                           className="btn btn-ghost btn-sm bg-white/5 rounded-xl hover:bg-error/10 hover:text-error"
                         >
                           <X size={18} />
@@ -183,7 +201,7 @@ const NotificationPage = () => {
                       </div>
                     ) : (
                       <button
-                        onClick={() => navigate(`/social/post/${notif.post}`)}
+                        onClick={() => navigate(`/social/post/${postId}`)}
                         className="btn btn-ghost btn-sm bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all gap-2"
                       >
                         <Eye size={16} />

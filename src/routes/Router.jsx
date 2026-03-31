@@ -13,6 +13,9 @@ import UserProfile from "../pages/social/Profile/UserProfile";
 import SearchModal from "../pages/social/Search/SearchModal";
 import FriendsPage from "../pages/social/Friends/FriendsPage";
 import NotificationPage from "../pages/social/NotificationPage/NotificationPage";
+import SelectedPostPage from "../pages/social/SelectedPostPage/SelectedPostPage";
+import MessagePage from "../pages/social/MessagePage/MessagePage";
+import InboxPage from "../pages/social/InboxPage/InboxPage";
 
 const isAuthenticated = true;
 
@@ -74,6 +77,18 @@ const router = createBrowserRouter([
       {
         path: "notifications",
         element: <NotificationPage />,
+      },
+      {
+        path: "post/:id",
+        element: <SelectedPostPage />,
+      },
+      {
+        path: "messages",
+        element: <MessagePage/>,
+      },
+      {
+        path: "messages/:chatId",
+        element: <InboxPage/>,
       },
     ],
   },

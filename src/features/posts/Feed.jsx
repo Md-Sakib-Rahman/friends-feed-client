@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import CreatePost from "./CreatePost";
 import PostCard from "./PostCard";
 import { fetchPosts } from "../../services/postService";
-
+import SelectedPostModal from "../../components/social/SelectedPostModal/SelectedPostModal"
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [cursor, setCursor] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-
+  const [selectedPost, setSelectedPost] = useState(null);
   const loadPosts = async (isInitial = false) => {
     if (loading) return;
     setLoading(true);
@@ -50,6 +50,7 @@ const Feed = () => {
             key={post._id} 
             post={post} 
             onDelete={handleDeletePost}  
+            onImageClick={() => setSelectedPost(post)}
           />
         ))}
       </div>
@@ -65,6 +66,10 @@ const Feed = () => {
           </button>
         </div>
       )}
+      <SelectedPostModal 
+  post={selectedPost} 
+  onClose={() => setSelectedPost(null)} 
+/>
     </div>
   );
 };
