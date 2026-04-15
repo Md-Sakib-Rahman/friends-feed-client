@@ -22,7 +22,7 @@ const TabButton = ({ active, onClick, icon: Icon, label }) => {
   return (
     <button
       onClick={onClick}
-      className={`relative flex items-center gap-3 px-6 py-3.5 rounded-2xl transition-all duration-300 group ${
+      className={`relative flex flex-1 items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 group ${
         active
           ? "text-primary-content"
           : "text-base-content/70 hover:text-base-content hover:bg-white/5"
@@ -31,21 +31,14 @@ const TabButton = ({ active, onClick, icon: Icon, label }) => {
       {active && (
         <motion.div
           layoutId="activeTabGlow"
-          className="absolute inset-0 bg-primary/80 backdrop-blur-2xl rounded-2xl shadow-lg shadow-primary/30 border border-primary/20"
+          className="absolute inset-0 bg-primary/80 backdrop-blur-2xl rounded-xl sm:rounded-2xl shadow-lg shadow-primary/30 border border-primary/20"
           transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
         />
       )}
 
-      <div className="relative z-10 flex items-center gap-3">
-        <Icon
-          size={19}
-          className={
-            active
-              ? ""
-              : "opacity-60 group-hover:opacity-100 transition-opacity"
-          }
-        />
-        <span className="font-bold text-sm tracking-tight">{label}</span>
+      <div className="relative z-10 flex items-center gap-1.5 sm:gap-3">
+        <Icon size={16} className={`sm:w-[19px] ${active ? "" : "opacity-60 group-hover:opacity-100 transition-opacity"}`} />
+        <span className="font-bold text-[11px] sm:text-sm tracking-tight">{label}</span>
       </div>
     </button>
   );
@@ -117,7 +110,7 @@ const Profile = () => {
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="relative z-10 bg-base-100/50 backdrop-blur-3xl border border-white/5 rounded-[3rem] p-10 shadow-2xl shadow-black/30 overflow-hidden"
+        className="relative z-10 bg-base-100/50 backdrop-blur-3xl border border-white/5 rounded-[3rem] p-5 shadow-2xl shadow-black/30 overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-conic from-primary/30 to-secondary/30 rounded-full blur-[80px] opacity-40 translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
 

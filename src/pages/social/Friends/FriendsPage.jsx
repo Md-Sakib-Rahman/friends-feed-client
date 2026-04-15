@@ -175,7 +175,10 @@ const FriendsPage = () => {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0">
-                    <button className="btn btn-ghost btn-sm p-2 hover:bg-primary/10 hover:text-primary rounded-xl">
+                    <button
+                      onClick={() => navigate(`/social/messages/${friend._id}`)}
+                      className="btn btn-ghost btn-sm p-2 hover:bg-primary/10 hover:text-primary rounded-xl"
+                    >
                       <MessageSquare size={18} />
                     </button>
                     <button
@@ -239,7 +242,16 @@ const FriendsPage = () => {
                       key={req._id}
                       className="flex items-center justify-between p-3 bg-white/5 rounded-2xl border border-white/5 hover:border-white/10 transition-colors"
                     >
-                      <div className="flex items-center gap-3">
+                      <div
+                        onClick={() => {
+                          const targetUser =
+                            activeTab === "incoming"
+                              ? req.sender
+                              : req.receiver;
+                          navigate(`/social/user/${targetUser._id}`);
+                        }}
+                        className="flex items-center gap-3 group/item cursor-pointer"
+                      >
                         <img
                           src={
                             (activeTab === "incoming"
@@ -247,7 +259,7 @@ const FriendsPage = () => {
                               : req.receiver
                             )?.profilePicture
                           }
-                          className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
+                          className="w-10 h-10 rounded-lg object-cover flex-shrink-0 group-hover/item:ring-2 ring-primary/30 transition-all"
                           alt=""
                         />
                         <div>
